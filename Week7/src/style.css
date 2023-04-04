@@ -1,0 +1,33 @@
+ul {
+  list-style-type: none;
+}
+.temperature-city {
+  font-weight: 900;
+  font-size: 40px;
+}
+.facts {
+  font-size: 13px;
+}
+.main-emoji {
+  line-height: 100px;
+  font-size: 100px;
+}
+.whole-body {
+  padding: 20px;
+}
+.forecast-day-icon {
+  font-size: 50px;
+}
+#inactive-unit {
+  font-size: 20px;
+  font-weight: 100;
+  user-select: none;
+}
+#inactive-unit:hover {
+  cursor: pointer;
+}
+#divisor {
+  font-size: 20px;
+  font-weight: 100;
+  user-select: none;
+}

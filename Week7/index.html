@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weatherApp</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="src/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="whole-body border rounded mt-4">
+        <div class="row my-3">
+          <div class="col-auto">
+            <div class="temperature-city">
+              <span id="temperature"></span>
+              <span id="active-unit">°F</span>
+              <span id="divisor">|</span>
+              <span id="inactive-unit">°C</span>
+              <div id="city"></div>
+            </div>
+            <div id="current-time">Current time</div>
+            <div id="description"></div>
+            <button
+              id="currentButton"
+              type="button"
+              class="btn btn-outline-secondary btn-sm mt-3"
+            >
+              Current
+            </button>
+          </div>
+          <div class="col-auto facts">
+            <ul>
+              <li>Humidy: <span id="humidity">56</span>%</li>
+              <li>Pressure: <span id="pressure">29.82</span> hPa</li>
+              <li>Feels like: <span id="feels-like">33</span> °F</li>
+            </ul>
+          </div>
+          <div class="col main-emoji text-center pt-0 mb-3">
+            <img src="#" alt="" id="icon" />
+          </div>
+          <div class="col-auto search-bar">
+            <form id="searched-city-form">
+              <input type="text" id="citySubmited" placeholder="Search City" />
+              <input type="submit" value="Search" />
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="" footer>
+        <a href="https://github.com/leslieshanell/weather-app"
+          >Open-source code</a
+        >
+        by Leslie Fernandez
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+    <script
+      src="https://kit.fontawesome.com/aa38e5a1b8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
