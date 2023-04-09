@@ -113,21 +113,67 @@ function updateWeatherInfo(weather) {
 }
 
 function updateTemp(res) {
+  console.log(res);
   if (res.data.cod !== 200) return;
   let weather = buildWeatherFromRes(res);
   updateWeatherInfo(weather);
+  getAndUpdateForecast(res.data.coord.lat, res.data.coord.lon);
 }
+
 function setCurrentPosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=${unit}&lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
   axios.get(apiUrl).then(updateTemp);
-}
 
-navigator.geolocation.getCurrentPosition(setCurrentPosition);
+  getAndUpdateForecast(latitude, longitude);
+}
 
 let currentButton = document.querySelector("#currentButton");
 currentButton.addEventListener("click", function () {
   navigator.geolocation.getCurrentPosition(setCurrentPosition);
 });
+
+function getAndUpdateForecast(lat, lon) {
+  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=${unit}`;
+  axios.get(forecastApiUrl).then(updateForecast);
+}
+
+function getDayFromTimestamp(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function updateForecast(res) {
+  let forecastDaysData = res.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastDays = `<div class="row">`;
+  forecastDaysData.forEach(function (day, index) {
+    if (index < 6) {
+      forecastDays += ` <div class="col forecast-day-card">
+            <div class="card text-center">
+              <div class="card-body">
+                <h5 class="card-title">${getDayFromTimestamp(day.dt)}</h5>
+                <p class="forecast-day-icon"><img
+          src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png"
+          alt=""
+          width="42"
+        /></p>
+                <p class="card-text">${Math.round(day.temp.min)} - ${Math.round(
+        day.temp.max
+      )}</p>
+              </div>
+            </div>
+        </div>`;
+    }
+  });
+  forecastDays += `</div>`;
+  forecastElement.innerHTML = forecastDays;
+}
+
+navigator.geolocation.getCurrentPosition(setCurrentPosition);
