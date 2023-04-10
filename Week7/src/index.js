@@ -164,9 +164,9 @@ function updateForecast(res) {
           alt=""
           width="42"
         /></p>
-                <p class="card-text">${Math.round(day.temp.min)} - ${Math.round(
-        day.temp.max
-      )}</p>
+                <p class="card-text">${Math.round(
+                  day.temp.min
+                )}° / ${Math.round(day.temp.max)}°</p>
               </div>
             </div>
         </div>`;
